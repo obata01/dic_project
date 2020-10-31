@@ -1,0 +1,30 @@
+# Raw data
+/data/raw/
+
+# Image data
+*.jpg
+*.png
+
+# Notebooks
+*.ipynb
+.ipynb_checkpoints
+
+# Keras Check point
+*.ckpt*
+checkpoint
+
+# Logs
+*.log
+/logs/
+
+# Keras weight ※容量が大きいため今回は除外
+*.h5
+
+# Password files
+dbconf.py
+
+# Backup directory and file
+bk/
+bk.py
+bk_*
+
