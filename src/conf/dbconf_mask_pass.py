@@ -36,7 +36,7 @@ class LocalRdsConfig:
     def __init__(self, db_name):
         self.__port = '3306'
         self.__user = 'ubuntu'
-        self.__passwd = '!dic202007'
+        self.__passwd = 'xxxxxxxx'
         self.__host = 'localhost'
         self.__dbname = db_name
     
