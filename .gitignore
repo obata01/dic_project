@@ -28,3 +28,5 @@ bk/
 bk.py
 bk_*
 
+# django
+/app/app/settings.py
