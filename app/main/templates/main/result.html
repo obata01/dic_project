@@ -1,0 +1,75 @@
+{% extends 'main/base.html' %}
+{% block title %}検索結果{% endblock %}
+
+{% block content %}
+<link media="screen,print" type="text/css" rel="stylesheet" href="https://www.enoteca.co.jp/css/cy-pc_top.css">
+
+<div>
+	<h4 class="mt-4 mb-5 border-bottom">ワイン検索＆レコメンデーションシステム</h4>
+
+	<table class='table'>
+		<tbody>
+			<tr>
+				<td>アップロード画像</td>
+				<td><img class='preview-img' src={{ photo_data }} width=auto height="250"></img></td>
+			</tr>
+			<tr>
+				<td>商品番号</td>
+				<td>{{ predicted }}</td>
+			</tr>
+			<tr>
+				<td>推定確率</td>
+				<td>{{ percentage }}</td>
+			</tr>
+			<tr>
+				<td>名称</td>
+				<td><a href="{{ url }}">{{ name }} ({{ name_jp }})</a></td>
+			</tr>
+			<tr>
+				<td>種類</td>
+				<td>{{ type1 }} / {{type2}}</td>
+			</tr>
+			<tr>
+				<td>価格</td>
+				<td>{{ price }}円</td>
+			</tr>
+			<tr>
+				<td>生産国</td>
+				<td>{{ made_in }}</td>
+			</tr>
+			<tr>
+				<td>品種</td>
+				<td>{{ hinsyu }}</td>
+			</tr>
+			<tr>
+				<td>詳細</td>
+				<td>{{ desc0 }}<br>{{ desc1 }}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<a href="{% url 'main:index' %}" class="btn btn-primary">ワイン検索画面へ戻る</a>
+
+
+<!-- Recommend Area -->
+<br><br><br>
+<h4>この商品を検索した人へおすすめのワイン</h4>
+<div class="recotest">
+<ul class="cy-column6">
+{% for item in recommend %}
+    <li class="cy-column__item">
+        <p class="cy-column__image ext-product">
+            <a href="{{ item.url }}" target="">
+                <span class="cy-column__category {{ item.type_label }}">{{ item.type2 }}</span><img src="{{ item.img_url }}">
+            </a>
+        </p>
+        <p class="cy-column__area"><span class="cy-icn_flag"></span>{{ item.made_in }}</p>
+        <p class="cy-column__text ext-product">{{ item.desc }}</p>
+        <p class="cy-column__price"><strong>{{ item.price }}</strong>（税抜）</p>
+        <p class="cy-column__label" style="height: 37px;">
+        </p>
+    </li>
+{% endfor %}
+</ul>
+</div>
+{% endblock %}

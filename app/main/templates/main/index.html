@@ -1,0 +1,34 @@
+{% extends 'main/base.html' %}
+{% block title %}画像アップロード{% endblock %}
+
+{% block content %}
+<div>
+	<h4 class="mt-4 mb-5 border-bottom">ワイン検索＆レコメンデーションシステム</h4>
+	<p>画像ファイルを選択して検索ボタンをクリックしてください。</p>
+	<form action="{% url 'main:predict' %}" method="post" class="form" enctype="multipart/form-data">
+	{% csrf_token %}
+	<div class="form-group">
+		<div class="custom-file">
+			{{ form.image }}
+			<label class="custom-file-label" for="customFile">
+				検索したい画像ファイルを選択してください。
+			</label>
+		</div>
+	</div>
+	<button type="submit" class="btn btn-primary">検索する</button>
+	</form>
+<br><br>
+	<p>検索したいキーワードを入力してください。</p>
+   	<form action="{% url 'main:predict2' %}" method="get" class="form2" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="キーワード入力欄", name='kw'>
+            <span class="input-group-btn">
+                <br>
+                <button type="submit" class="btn btn-primary">検索する</button>
+            </span>
+        </div>
+	</form>
+</div>
+{% endblock %}
+
