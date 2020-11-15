@@ -16,7 +16,7 @@ class ContentsRecommend():
 
         # Doc2Vec 初期化
         input_path = '/home/ubuntu/my_project/src/data/wine_desc3_ajiwai'
-        model_dir = '/home/ubuntu/my_project/src/models/weight/contents_recommend/doc2vec'
+        model_dir = '/home/ubuntu/my_project/models/text_recommend'
         model_file_name = '20201025_d2v.model'
         self.model = Doc2Vec(tokenizer=janome, 
                              input_path=input_path, 
