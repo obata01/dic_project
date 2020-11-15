@@ -6,7 +6,7 @@ class RdsConfig:
     def __init__(self, db_name):
         self.__endpoint = 'man-database-01.cluster-cuvaun7oz5f3.us-east-1.rds.amazonaws.com'
         self.__port = '3306'
-        self.__user = 'udemy'
+        self.__user = '**********'
         self.__region = 'us-east-1'
         self.__dbname = db_name
         os.environ['LIBMYSQL_ENABLE_CLEARTEXT_PLUGIN'] = '1'
@@ -35,8 +35,8 @@ class RdsConfig:
 class LocalRdsConfig:
     def __init__(self, db_name):
         self.__port = '3306'
-        self.__user = 'ubuntu'
-        self.__passwd = 'xxxxxxxx'
+        self.__user = '**********'
+        self.__passwd = '**********'
         self.__host = 'localhost'
         self.__dbname = db_name
     
