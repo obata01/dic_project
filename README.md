@@ -11,6 +11,9 @@
 ## 制作期間
 2週間
 
+## 画面イメージ・補足資料
+https://github.com/obata01/dic_project/blob/master/info.pdf
+
 ## 使用した技術
 - 画像検出
   - Efficientnet-b0のファインチューニング
