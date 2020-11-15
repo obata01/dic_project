@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+
+# Doc2Vecの共通処理
+
 import glob
 import re
 import os
@@ -6,11 +10,10 @@ import numpy as np
 from tqdm import tqdm
 import collections
 from gensim import models
+from gensim.models.doc2vec import TaggedDocument
 import pandas as pd
 from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt
-# from gensim.models.doc2vec import Doc2Vec
-from gensim.models.doc2vec import TaggedDocument
 from utils import Logger
 logger = Logger(level='INFO')
 
@@ -159,7 +162,6 @@ class Doc2Vec:
         else:
             logger.info('Search similar document process ended normally.')
             return similar_docs
-#             return results
 
 
     def __get_similar_word(self, word, topn):
@@ -244,6 +246,7 @@ class Doc2Vec:
         """特定の単語・文章の分散値を返却"""
         word = self.__split_into_words(word)[0]
         return self.__model.infer_vector(word)
+
     
     def vec_to_similar_word(self, vec, topn):
         """分散値から類似の単語を返却"""
@@ -260,6 +263,7 @@ class Doc2Vec:
     
     
     def tsne(self):
+        """テスト用（可視化）"""
         vocabs = self.__model.wv.vocab.keys()
         print(vocabs)
         tsne_model = TSNE(perplexity=50, n_components=2, init="pca", n_iter=3000, random_state=23)

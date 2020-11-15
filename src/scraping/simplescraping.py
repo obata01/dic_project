@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+
+# 共通処理
+# Webスクレイピング処理
+
 import sys
 import os
 import re
@@ -7,20 +12,17 @@ import requests
 from typing import Iterator
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
-sys.path.append(os.path.abspath("../.."))
 from lib import utils
 sys.setrecursionlimit(100000)
 
 logger = utils.Logger(level='info')
 
 TEMPORARY_ERROR_CODES = (408, 500, 502, 503, 504)  # 一時的なエラーを表すステータスコード。
-SITEMAP_URL = 'https://www.enoteca.co.jp/sitemap_detail.xml'
-OUTPUT_PATH = '../../data/test'
 
 class SimpleScraping:
     def __init__(self, sitemap_url, output_path):
         self.sitemap_url = sitemap_url
-        self.OUTPUT_PATH = output_path
+        self.output_path = output_path
         pass
 
         
@@ -84,6 +86,9 @@ class SimpleScraping:
     
             
     def run(self, urls, func_scrape):
+        """
+        クローリング＆スクレイピング実行処理
+        """
         n = len(urls)
         session = requests.Session()
         for i in range(n):
@@ -108,7 +113,7 @@ class SimpleScraping:
             # スクレイピング結果をファイルへ出力
             try:
                 file_name = 'scraping_data_' + str(i) + '.pkl'
-                file_name = os.path.join(self.OUTPUT_PATH, file_name)
+                file_name = os.path.join(self.output_path, file_name)
                 self.write_file(result, file_name)
                 logger.info('URL:{} is success.'.format(url))
             except Exception as e:
@@ -121,13 +126,16 @@ class SimpleScraping:
                 
     def extract_key(self, url: str) -> str:
         """
-        URLからキー（URLの末尾のISBN）を抜き出す。
+        URLからキー（URLの末尾のISBN）を抜き出す
         """
         m = re.search(r'/([^/]+)$', url)  # 最後の/から文字列末尾までを正規表現で取得。
         return m.group(1)
                 
     
     def write_file(self, data, out_file_name):
+        """
+        pickle形式でファイル出力する処理
+        """
         with open(out_file_name, 'wb') as f:
             pickle.dump(data, f)
 
@@ -136,7 +144,3 @@ class SimpleScraping:
         urls = self.get_urls(self.sitemap_url)
         self.run(urls, self.scrape_detail_page)
 
-        
-if __name__ == '__main__':
-    ss = SimpleScraping(SITEMAP_URL, OUTPUT_PATH)
-    ss.main()

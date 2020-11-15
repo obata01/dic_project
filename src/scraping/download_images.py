@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+
+# 共通処理
+# URLを指定して画像ファイルをダウンロードする処理
+
 import sys
 import os
 import urllib.error
@@ -5,16 +10,16 @@ import urllib.request
 import utils
 logger = utils.Logger(level='info')
 
-
 class DownloadImages:
+    """
+    画像ダウンロード用共通処理クラス
+    """
     def __init__(self):
         pass
     
     @classmethod
     def download(self, url, out_path):
-        """
-        引数urlから画像をDLしてout_pathへ書き出す処理
-        """
+        """引数urlから画像をDLしてout_pathへ書き出す処理"""
         logger.info(sys._getframe().f_code.co_name + ' - Process start...')
         try:
             opener = urllib.request.build_opener()

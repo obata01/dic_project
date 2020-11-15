@@ -1,4 +1,8 @@
-import mysql.connector
+#!/usr/bin/env python3
+
+# 画像分類で使用するアイテム情報を
+# DBから抽出するための共通処理
+
 import os
 import utils
 import db

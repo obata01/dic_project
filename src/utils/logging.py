@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+
+# ロギング用共通処理
+
 import logging
 import datetime
 

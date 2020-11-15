@@ -57,6 +57,7 @@ def predict(request):
 
 
 def predict2(request):
+    """キーワード検索"""
     if not request.method == 'GET':
         logger.warning('method is not post')
         return redirect('main:index')
@@ -74,33 +75,3 @@ def predict2(request):
     }
     logger.debug(recommend_items)
     return HttpResponse(template.render(context, request))
-
-
-#     """画像アップロード後の処理"""
-#     # POSTか判定
-#     logger.debug('views.py - predict start...')
-#     if not request.method == 'POST':
-#         return redirect('main:index')
-    
-
-    
-#     # レスポンス準備
-#     template = loader.get_template('main/result.html')
-#     context = {
-#         'photo_data': photo.image_src(),
-#         'predicted': predicted,
-#         'percentage': percentage,
-#         'name': info[1],
-#         'name_jp': info[2],
-#         'url': info[3],
-#         'price': info[4],
-#         'made_in': info[5],
-#         'type1': info[6],
-#         'type2': info[7],
-#         'hinisyu': info[8],
-#         'desc0': info[9],
-#         'desc1': info[10],
-#         'recommend': recommend_items[:6],
-#     }
-#     logger.debug(info)
-#     return HttpResponse(template.render(context, request))

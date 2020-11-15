@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+
+# エノテカサイトをクロール＆スクレイピングして
+# ワイン情報を取得する処理
+
+
 from simplescraping import *
 
 TYPE_LIST = ['ワイン']

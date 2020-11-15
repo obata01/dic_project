@@ -1,6 +1,8 @@
-import os
+#!/usr/bin/env python3
 
 # DB接続情報
+
+import os
 
 class RdsConfig:
     def __init__(self, db_name):

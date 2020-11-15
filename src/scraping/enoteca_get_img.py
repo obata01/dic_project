@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+
+# エノテカサイトからワイン画像をダウンロードする処理
+# 画像URLはクロール＆スクレイピング済みの情報から使用する
+
 import sys
 import os
 import pickle
@@ -17,6 +22,9 @@ PKL_FILE_DIR = '../../data/test/'
 OUT_DIR = '../..'
 
 def enoteca_get_img():
+    """
+    エノテカサイトから画像をダウンロードする処理
+    """
     logger.info('Start get image precess...')
     fin_id = []
 

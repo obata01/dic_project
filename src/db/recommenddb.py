@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+
+# DB名：recommend
+# テーブル名・カラム名一覧情報格納用
+
 import db
 
 class RecommendDB(db.BaseDB):

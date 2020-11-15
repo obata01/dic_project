@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+
+# DB接続・操作
+# 共通処理
+
 import mysql.connector
 import boto3
 import sys
@@ -11,6 +16,7 @@ logger = utils.Logger(level='info')
 
 class DBHandler:
     def __init__(self, db_name):
+        """コンストラクタ"""
         self.db_name = db_name
         self.session = None
         self.client = None
@@ -19,6 +25,7 @@ class DBHandler:
         self.conn = None
     
     def connect(self):
+        """DB接続用共通処理（RDS）"""
         conf = dbconf.RdsConfig(self.db_name)
         try:
             self.session = boto3.Session(profile_name='default')
@@ -26,7 +33,6 @@ class DBHandler:
             self.token = client.generate_db_auth_token(DBHostname=conf.endpoint, Port=conf.port, DBUsername=conf.user, Region=conf.region)
             self.conn =  mysql.connector.connect(host=conf.endpoint, user=conf.user, passwd=self.token, port=conf.port, database=conf.dbname)
             self.cur = conn.cursor(prepared=True)
-#             self.cur = conn.cursor(prepared=True)
         except Exception as e:
             logger.error('DB connection error.'.format(e))
         else:
@@ -34,6 +40,7 @@ class DBHandler:
 
 
     def local_connect(self, cursor=False, prepared=False):
+        """DB接続共通処理（EC2）"""
         conf = dbconf.LocalRdsConfig(self.db_name)
         try:
             self.conn = mysql.connector.connect(
@@ -52,6 +59,7 @@ class DBHandler:
     
     
     def close(self):
+        """DB接続クローズ共通処理"""
         logger.info('DB connection release start...')
         try:
             self.conn.close()
@@ -69,6 +77,7 @@ class DBHandler:
     
     
     def commit(self):
+        """コミット共通処理"""
         logger.info('Commit process start...')
         try:
             self.conn.commit()
@@ -79,6 +88,7 @@ class DBHandler:
     
     
     def rollback(self):
+        """ロールバック共通処理"""
         logger.info('Rollback process start...')
         try:
             self.conn.rollback()
@@ -89,6 +99,7 @@ class DBHandler:
     
     
     def select(self, sql, ph_values=None):
+        """select文"""
         logger.info('SQL execute start...')
         try:
             if self.conn == None:
@@ -108,6 +119,7 @@ class DBHandler:
         
         
     def pre_insert(self, stmt, values):
+        """insert文（プリペアドステートメント）"""
         logger.info('Insert process start...')
         for i, v in enumerate(values):
             logger.info('{} {}'.format(i, v))

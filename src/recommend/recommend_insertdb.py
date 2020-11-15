@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+
+# レコメンドデータを事前に作成して
+# DBへ格納しておくための処理
+
 import mysql.connector
 import os
 import utils

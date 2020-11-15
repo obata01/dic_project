@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+
+# ワイン画像推定するための処理
+
 import os
 import sys
 import numpy as np
@@ -14,8 +18,8 @@ logger = Logger(level='DEBUG')
 
 
 IMG_SIZE = 112
-NUM_CLASSES = 7
-# NUM_CLASSES = 3954
+# NUM_CLASSES = 7
+NUM_CLASSES = 3954
 MODEL_PATH = '/home/ubuntu/my_project/models/img_detection/keras2_efficientnet_w3.h5'
 LABEL_PATH = '/home/ubuntu/my_project/models/img_detection/label_map3.pkl'
 # MODEL_PATH = '/home/ubuntu/my_project/models/img_detection/keras2_efficientnet_w2.h5'

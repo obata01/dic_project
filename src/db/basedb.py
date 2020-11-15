@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+
+# DB名毎にテーブル名・カラム名を保持するための
+# 抽象基底クラス
+
 import abc
 
 class BaseDB(object, metaclass=abc.ABCMeta):

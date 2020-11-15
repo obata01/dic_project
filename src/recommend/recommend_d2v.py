@@ -1,9 +1,13 @@
+#!/usr/bin/env python3
+
+# Doc2Vecを使用したワイン説明文のレコメンドで
+# 必要な処理をまとめたクラス
+
+
 import os
 from models.common import Doc2Vec
 from models.common import JanomeTokenizer
 from utils import Logger
-
-
 
 class ContentsRecommend():
     def __init__(self, model_load):

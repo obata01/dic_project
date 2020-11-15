@@ -1,4 +1,4 @@
-#!/home/ubuntu/anaconda3/envs/tensorflow_p36/bin/python3
+#!/usr/bin/env python3
 
 # MySQLのitemテーブルから商品説明文を抽出して
 # 指定ディレクトリに "item_id.txt"の形式で出力する処理。

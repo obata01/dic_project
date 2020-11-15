@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+
+# スクレイピングした商品情報を商品マスタとして
+# DB(mysql)へインサートする処理
+
 import mysql.connector
 import os
 import utils

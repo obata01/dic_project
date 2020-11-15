@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+
+# ワイン説明文レコメンドの推論用処理
+
 from recommend import ContentsRecommend
 
 
